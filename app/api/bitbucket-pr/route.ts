@@ -1,4 +1,9 @@
-import {EVENT_TYPE, PHONE_TARGET, WA_TOKEN, WA_URL} from './route.constants';
+import {
+  EVENT_TYPE,
+  PHONE_TARGET,
+  WA_TOKEN,
+  WA_URL,
+} from './route.constants';
 import type { PullRequestBase } from './route.types';
 
 const sendMessage = async (message: string) => {

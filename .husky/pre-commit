@@ -1,0 +1,12 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+filechanged=$(git diff --cached --numstat --diff-filter=ACM | wc -l)
+
+echo "filechanged  --> $filechanged"
+if [ $filechanged != "0" ]
+then
+  pnpm lint-staged
+else
+  exit 0
+fi
