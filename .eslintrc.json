@@ -1,3 +1,143 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "next",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb-typescript"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.js",
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {
+        "import/extensions": [
+          "error",
+          "ignorePackages",
+          {
+            "pattern": {
+              "js": "never",
+              "ts": "never",
+              "jsx": "never",
+              "tsx": "never"
+            }
+          }
+        ],
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // Packages `react` adn `next` related packages come first.
+              [
+                "^react$",
+                "^next"
+              ],
+              // External packages.
+              [
+                "^@?\\w"
+              ],
+              // Internal packages.
+              ["^@\/"],
+              // features
+              ["^#"],
+              // Side effect imports.
+              [
+                "^\\u0000"
+              ],
+              // Parent imports. Put `..` last.
+              [
+                "^\\.\\.(?!/?$)",
+                "^\\.\\./?$"
+              ],
+              // Other relative imports. Put same-folder imports and `.` last.
+              [
+                "^\\./(?=.*/)(?!/?$)",
+                "^\\.(?!/?$)",
+                "^\\./?$"
+              ],
+              // Style imports.
+              [
+                "^.+\\.?(css)$"
+              ]
+            ]
+          }
+        ],
+        "react/function-component-definition": [
+          2,
+          {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+          }
+        ],
+        "react/require-default-props": "off", // Since we do not use prop-types
+        "import/prefer-default-export": "off"
+      }
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "parser": "@typescript-eslint/parser"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "eslint-plugin-simple-import-sort"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": ["off"],
+    "jsx-a11y/label-has-associated-control": ["error", {
+      "required": {
+        "some": ["nesting", "id"]
+      }
+    }],
+    "jsx-a11y/label-has-for": ["error", {
+      "required": {
+        "some": ["nesting", "id"]
+      }
+    }],
+    "linebreak-style": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["@mui/*/*/*"]
+      }
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        "default": "array-simple"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "error",
+    "react/button-has-type": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off"
+  }
 }
